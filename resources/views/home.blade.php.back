@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Éducatif pour Enfants</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            color: #333;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        .description {
+            font-size: 1.2rem;
+            margin: 0 auto 40px;
+            padding: 15px;
+            background: linear-gradient(135deg, rgba(255,215,215,0.7) 0%, rgba(215,255,255,0.7) 100%);
+            border-radius: 15px;
+            max-width: 80%;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            color: #6c5ce7;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            border: 2px solid rgba(255,255,255,0.5);
+            line-height: 1.6;
+            text-align: center;
+      }
+    
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .video-background video {
+            position: absolute;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            opacity: 0.5; 
+        }
+        
+        .content-overlay {
+            position: relative;
+            background-color: rgba(O, 0, 0, 0.4);
+            min-height: 100vh;
+        }
+
+        header {
+            display: flex;
+            flex-direction: column;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #a388ee 0%, #c8b6e2 100%); 
+            border-bottom: 1px solid #e9ecef;
+            position: relative;
+            z-index: 1;
+            color: white;
+        }
+
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .header-categories {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            padding: 10px 0;
+        }
+        
+        .header-category {
+            padding: 5px 12px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        /*
+        .header-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 10px;
+            padding: 10px 0;
+            justify-content: center;
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }*/
+
+        @media (max-width: 768px) {
+            .header-categories {
+                grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+                gap: 8px;
+            }
+        }
+        
+        .header-category {
+            padding: 5px 12px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .header-category:hover {
+            background-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-3px);
+        }
+        
+        .login-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .login-btn, .parent-space-btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .login-btn:hover, .parent-space-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .login-btn {
+            background-color: #ff7675;
+        }
+        
+        .parent-space-btn {
+            background-color: #55efc4;
+            color: #2d3436;
+        }
+        
+        main {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .logo img {
+    height: 50px;
+    width: auto; 
+    transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+    transform: scale(1.05); 
+}
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 40px;
+            background: linear-gradient(to right, #fd79a8, #6c5ce7);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            display: inline-block;
+        }
+        
+        .categories {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        .category-item {
+            width: 160px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            color: #333;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .category-item:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .category-image {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+        }
+        
+        .category-name {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: white;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5));
+            padding: 8px 0;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        
+   
+        .category-couleurs .category-name {
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            color: #333;
+        }
+        
+        .category-animaux .category-name {
+            background: linear-gradient(to right, #a1c4fd, #c2e9fb);
+            color: #333;
+        }
+        
+        .category-drapeaux .category-name {
+            background: linear-gradient(to right, #ffecd2, #fcb69f);
+            color: #333;
+        }
+        
+        .category-legumes .category-name {
+            background: linear-gradient(to right, #84fab0, #8fd3f4);
+            color: #333;
+        }
+        
+        .category-fruits .category-name {
+            background: linear-gradient(to right, #ff6b6b, #ffa8a8);
+            color: #333;
+        }
+        
+        .category-saisons .category-name {
+            background: linear-gradient(to right, #f6d365, #fda085);
+            color: #333;
+        }
+        
+        .category-vehicules .category-name {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+        }
+        
+        .category-lettres .category-name {
+            background: linear-gradient(to right, #a18cd1, #fbc2eb);
+            color: #333;
+        }
+        
+        .category-nombres .category-name {
+            background: linear-gradient(to right, #fdcbf1, #e6dee9);
+            color: #333;
+        }
+        
+        .category-quiz .category-name {
+            background: linear-gradient(to right, #d4fc79, #96e6a1);
+            color: #333;
+        }
+        
+        .category-jeux .category-name {
+            background: linear-gradient(to right, #fa709a, #fee140);
+            color: #333;
+        }
+        
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 30px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 500px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .close {
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            background: linear-gradient(to right, #5700c2, #1a68e3);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(106, 17, 203, 0.3);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: white;
+            margin-top: 40px;
+            position: relative;
+        }
+        
+        
+        .parent-dashboard {
+            display: none;
+            text-align: left;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+        }
+        
+        .dashboard-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .dashboard-section h3 {
+            color: #6a11cb;
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .progress-chart {
+            background-color: #e9ecef;
+            height: 200px;
+            margin-top: 15px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .settings-form {
+            margin-top: 15px;
+        }
+        
+        
+        .back-btn {
+            background: linear-gradient(to right, #ff6b6b, #ffa8a8);
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            background: linear-gradient(to right, #ff5252, #ff9191);
+            transform: translateY(-2px);
+        }
+        
+        
+        .video-controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 5;
+            background-color: rgba(106, 17, 203, 0.7);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: white;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+        
+        .video-controls:hover {
+            background-color: rgba(106, 17, 203, 0.9);
+            transform: scale(1.1);
+        }
+        
+        @media (max-width: 768px) {
+            .header-categories {
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+            }
+            
+            .categories {
+                gap: 15px;
+            }
+            
+            .category-item {
+                width: 120px;
+            }
+            
+            .category-image {
+                height: 90px;
+            }
+            
+            .category-name {
+                font-size: 0.9rem;
+            }
+            
+            .video-controls {
+                bottom: 10px;
+                right: 10px;
+                width: 30px;
+                height: 30px;
+                font-size: 14px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="video-background">
+        <video autoplay muted loop id="background-video">
+            <source src="assets/images/php.mp4" type="video/mp4">
+            <source src="https://cdnjs.cloudflare.com/ajax/libs/ionicons/5.5.0/examples/colorful-shapes.mp4" type="video/mp4">
+            Votre navigateur ne prend pas en charge la lecture de vidéos.
+        </video>
+    </div>
+    
+    <div class="video-controls" onclick="toggleVideo()" title="Pause/Play vidéo">
+        <i id="video-icon">⏸</i>
+    </div>
+    <div class="content-overlay">
+        <header>
+            <div class="header-top">
+            <div class="logo">
+                <a href="{{ route('home') }}" title="Retour à l'accueil">
+                <img src="{{ asset('assets/images/pikolino.png') }}" alt="Pikolino - Jeux éducatifs pour enfants" class="logo-image">
+                </a>
+            </div>
+
+            
+                <button class="parent-space-btn" onclick="openParentSpace()">Espace Parents</button>
+            </div>
+            <div class="header-categories" id="header-categories">
+                    <a href="{{ route('colors') }}" class="header-category">🎨 Couleurs</a>
+                    <a href="{{ route('animals') }}" class="header-category">🐶 Animaux</a>
+                    <a href="{{ route('flags') }}" class="header-category">🚩 Drapeaux</a>
+                    <a href="{{ route('vegetables') }}" class="header-category">🥕 Légumes</a>
+                    <a href="{{ route('fruits') }}" class="header-category">🍎 Fruits</a>
+                    <a href="{{ route('seasons') }}" class="header-category">🌦️ Saisons</a>
+                    <a href="{{ route('vehicules') }}" class="header-category">🚗 Véhicules</a>
+                    <a href="{{ route('letters') }}" class="header-category">🔠 Lettres</a>
+                    <a href="{{ route('numbers') }}" class="header-category">🔢 Nombres</a>
+                    <a href="{{ route('games') }}" class="header-category">🎮 Jeux</a>
+                    <a href="{{ route('quiz') }}" class="header-category">🎮 Quiz</a>
+
+                </div>
+        </header>
+        <main>
+            <h1>Bienvenue sur Pikolino !</h1>
+            <div class="description">
+                🌈 Dans le monde de Pikolino 🎨✨<br>
+                💤 les rêves riment avec apprentissage 📚💡<br>
+                🚀 et chaque jeu devient un voyage 🌍🎲
+            </div>
+            <div class="categories" id="categories-container">
+
+    <a href="{{ route('colors') }}" class="category-item category-couleurs">
+        <img src="{{ asset('assets/images/clr.png') }}" alt="Couleurs" class="category-image" style="background-color: #ff9a9e;">
+        <div class="category-name">🎨 Couleurs</div>
+    </a>
+    <a href="{{ route('animals') }}" class="category-item category-animaux">
+        <img src="{{ asset('assets/images/anm.png') }}" alt="Animaux" class="category-image" style="background-color: #a1c4fd;">
+        <div class="category-name">🐶 Animaux</div>
+    </a>
+    <a href="{{ route('flags') }}" class="category-item category-drapeaux">
+        <img src="{{ asset('assets/images/morocco.png') }}" alt="Drapeaux" class="category-image" style="background-color: #ffecd2;">
+        <div class="category-name">🚩 Drapeaux</div>
+    </a>
+    <a href="{{ route('vegetables') }}" class="category-item category-legumes">
+        <img src="{{ asset('assets/images/lettuce.png') }}" alt="Légumes" class="category-image" style="background-color: #84fab0;">
+        <div class="category-name">🥕 Légumes</div>
+    </a>
+    <a href="{{ route('fruits') }}" class="category-item category-fruits">
+        <img src="{{ asset('assets/images/strawberry.png') }}" alt="Fruits" class="category-image" style="background-color: #ff6b6b;">
+        <div class="category-name">🍎 Fruits</div>
+    </a>
+    <a href="{{ route('seasons') }}" class="category-item category-saisons">
+        <img src="{{ asset('assets/images/winter.png') }}" alt="Saisons" class="category-image" style="background-color: #f6d365;">
+        <div class="category-name">🌦️ Saisons</div>
+    </a>
+    <a href="{{ route('vehicules') }}" class="category-item category-vehicules">
+        <img src="{{ asset('assets/images/car.png') }}" alt="Véhicules" class="category-image" style="background-color: #6a11cb;">
+        <div class="category-name">🚗 Véhicules</div>
+    </a>
+    <a href="{{ route('letters') }}" class="category-item category-lettres">
+        <img src="{{ asset('assets/images/A.png') }}" alt="Lettres" class="category-image" style="background-color: #a18cd1;">
+        <div class="category-name">🔠 Lettres</div>
+    </a>
+    <a href="{{ route('numbers') }}" class="category-item category-nombres">
+        <img src="{{ asset('assets/images/1.png') }}" alt="Nombres" class="category-image" style="background-color: #fdcbf1;">
+        <div class="category-name">🔢 Nombres</div>
+    </a>
+    <a href="{{ route('games') }}" class="category-item category-jeux">
+        <img src="{{ asset('assets/images/game.png') }}" alt="Jeux" class="category-image" style="background-color: #fa709a;">
+        <div class="category-name">🎮 Jeux</div>
+    </a>
+</div>
+
+
+
+            </div>
+        
+            <div class="parent-dashboard" id="parent-dashboard">
+                <button class="back-btn" onclick="closeParentSpace()">Retour au site enfant</button>
+                <h2>Tableau de bord parental</h2>
+                <div class="dashboard-section">
+                    <h3>Progression de votre enfant</h3>
+                    <div class="progress-chart">
+                        <p>Graphique de progression (cette visualisation serait dynamique)</p>
+                    </div>
+                </div>
+                <div class="dashboard-section">
+                    <h3>Activités récentes</h3>
+                    <ul>
+                        
+                    </ul>
+                </div>
+            </div>
+        </main>
+       
+    </div>
+    <script>
+    
+        async function loadCategories() {
+            try {
+                const response = await fetch('/api/categories');
+                const categories = await response.json();
+
+                const categoriesContainer = document.getElementById('categories-container');
+                const headerCategories = document.getElementById('header-categories');
+
+                categories.forEach(category => {
+                    
+                    const categoryItem = document.createElement('a');
+                    categoryItem.href = category.route; 
+                    categoryItem.className = `category-item category-${category.slug}`;
+                    categoryItem.innerHTML = `
+                        <img src="${category.image}" alt="${category.name}" class="category-image" style="background-color: ${category.color};">
+                        <div class="category-name">${category.name}</div>
+                    `;
+                    categoriesContainer.appendChild(categoryItem);
+
+                    const headerCategory = document.createElement('a');
+                    headerCategory.href = category.route;
+                    headerCategory.className = 'header-category';
+                    headerCategory.textContent = category.name;
+                    headerCategories.appendChild(headerCategory);
+                });
+            } catch (error) {
+                console.error('Erreur lors du chargement des catégories :', error);
+            }
+        }
+
+        function openParentSpace() {
+            document.getElementById("categories-container").style.display = "none";
+            document.getElementById("parent-dashboard").style.display = "block";
+            document.querySelector("h1").textContent = "Espace Parents";
+        }
+
+        function closeParentSpace() {
+            document.getElementById("categories-container").style.display = "flex";
+            document.getElementById("parent-dashboard").style.display = "none";
+            document.querySelector("h1").textContent = "Bienvenue sur Pikolino !";
+        }
+
+        function toggleVideo() {
+            var video = document.getElementById("background-video");
+            var icon = document.getElementById("video-icon");
+            if (video.paused) {
+                video.play();
+                icon.textContent = "⏸";
+            } else {
+                video.pause();
+                icon.textContent = "▶";
+            }
+        }
+        
+        window.onload = function () {
+            loadCategories();
+        };
+    </script>
+</body>
+</html>

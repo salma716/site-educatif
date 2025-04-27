@@ -1,61 +1,74 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+🎯 Site Éducatif pour Enfants
+📚 Présentation
+Ce projet est un site éducatif destiné aux enfants, proposant différentes activités ludiques pour accompagner leur apprentissage.
+Le site offre une navigation simple entre plusieurs catégories
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+🛠️ Technologies utilisées
+Laravel (Framework PHP)
 
-## About Laravel
+HTML / CSS (Frontend)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+MySQL (Base de données)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+🚀 Fonctionnalités principales
+Navigation entre différentes catégories d'activités éducatives.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Espace administrateur sécurisé permettant :
 
-## Learning Laravel
+L'ajout de nouvelles catégories.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+L'ajout de nouveaux contenus (objets éducatifs).
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+La modification et la suppression du contenu existant.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+⚙️ Partie technique
+Le projet suit l'architecture MVC (Modèle - Vue - Contrôleur) de Laravel :
 
-## Laravel Sponsors
+Modèles : pour interagir avec la base de données.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Contrôleurs : pour la logique de traitement des données.
 
-### Premium Partners
+Vues : pour l'affichage des interfaces utilisateur.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development/)**
-- **[Active Logic](https://activelogic.com)**
+La base de données repose sur deux tables principales :
 
-## Contributing
+Category : stocke les catégories d'activités.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+CategoryObject : stocke les contenus liés à chaque catégorie.
 
-## Code of Conduct
+Une authentification Laravel protège l’accès à l’espace administrateur.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+🛤️ Évolution du projet
+Initialement développé comme un site statique avec des pages et catégories codées en dur.
 
-## Security Vulnerabilities
+Progressivement transformé en site dynamique administrable grâce à l’intégration d’un tableau de bord d'administration.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+👥 Répartition des rôles dans l'équipe
+JAMAI Salma :
 
-## License
+Développement du backend avec Laravel : création des modèles, des contrôleurs et des routes pour la gestion des données.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Création de la page administrateur : interfaces pour l’ajout, la modification et la suppression des catégories et objets éducatifs. 
+Mise en place du système d'authentification pour sécuriser l’accès à l'administration.
+
+EL-BAGRAJ Yousra:
+
+Développement du frontend et design du site.
+Création des pages principales : affichage des données, des objets éducatifs et de la page d'accueil.
+Création des quiz et des jeux
+Collecte des données nécessaires pour le contenu éducatif.
+
+ABOURI Saad
+Mise en place du design des pages login et register.
+Mise en place du design des catégories pour une meilleure expérience utilisateur.
+
+Collecte des données nécessaires pour le contenu éducatif.
+
+🔮 Améliorations futures possibles
+
+Mise en place d'un système de niveaux de difficulté pour les activités.
+
+Ajout d'animations pour améliorer l'interactivité avec les enfants.
+
+Optimisation pour les supports mobiles.
+
