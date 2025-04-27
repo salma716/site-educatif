@@ -43,7 +43,8 @@ Initialement développé comme un site statique avec des pages et catégories co
 
 Progressivement transformé en site dynamique administrable grâce à l’intégration d’un tableau de bord d'administration.
 
-👥 Répartition des rôles dans l'équipe
+👥 Répartition des rôles dans l'équipe:
+
 JAMAI Salma :
 
 Développement du backend avec Laravel : création des modèles, des contrôleurs et des routes pour la gestion des données.
