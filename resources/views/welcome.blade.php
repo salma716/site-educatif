@@ -271,12 +271,13 @@
     </style>
 </head>
 <body>
-    <div class="video-background">
-        <video autoplay muted loop id="background-video">
-            <source src="php.mp4" type="video/mp4">
-            <source src="https://cdnjs.cloudflare.com/ajax/libs/ionicons/5.5.0/examples/colorful-shapes.mp4" type="video/mp4">
-            Votre navigateur ne prend pas en charge la lecture de vidéos.
-        </video>
+        <div class="video-background">
+            <video autoplay muted loop playsinline id="background-video">
+                <source src="{{ asset('assets/images/php.mp4') }}" type="video/mp4">
+                Votre navigateur ne prend pas en charge la lecture de vidéos.
+            </video>
+        </div>
+
     </div>
     <div class="video-controls" onclick="toggleVideo()" title="Pause/Play vidéo">
         <i id="video-icon">⏸</i>
