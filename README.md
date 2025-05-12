@@ -37,6 +37,7 @@ Category : stocke les catégories d'activités.
 CategoryObject : stocke les contenus liés à chaque catégorie.
 
 Une authentification Laravel protège l’accès à l’espace administrateur.
+Pour acceder à l'interface admin: on ajoute "/admin" dans l'url.
 
      Évolution du projet
 Initialement développé comme un site statique avec des pages et catégories codées en dur.
